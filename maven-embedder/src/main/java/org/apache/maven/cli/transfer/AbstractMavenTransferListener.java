@@ -114,7 +114,7 @@ public abstract class AbstractMavenTransferListener extends AbstractTransferList
 
             public static ScaleUnit getScaleUnit( long size )
             {
-                Precondition.requireGreaterThanZero( size, "file size cannot be negative: %s", size );
+                Precondition.greaterOrEqualToZero( size, "file size cannot be negative: %s", size );
 
                 if ( size >= GIGABYTE.bytes() )
                 {
@@ -161,7 +161,7 @@ public abstract class AbstractMavenTransferListener extends AbstractTransferList
         @SuppressWarnings( "checkstyle:magicnumber" )
         public String format( long size, ScaleUnit unit, boolean omitSymbol )
         {
-            Precondition.requireGreaterThanZero( size, "file size cannot be negative: %s", size );
+            Precondition.greaterOrEqualToZero( size, "file size cannot be negative: %s", size );
 
             if ( unit == null )
             {
@@ -193,7 +193,7 @@ public abstract class AbstractMavenTransferListener extends AbstractTransferList
 
         public String formatProgress( long progressedSize, long size )
         {
-            Precondition.requireGreaterThanZero( progressedSize, "progressed file size cannot be negative: %s",
+            Precondition.greaterOrEqualToZero( progressedSize, "progressed file size cannot be negative: %s",
                     progressedSize );
             Precondition.isTrue( size >= 0L && progressedSize <= size || size < 0L,
                     "progressed file size cannot be greater than size: %s > %s", progressedSize, size );
